@@ -1,7 +1,8 @@
 var 
     express = require('express'),
-    handlebars = require('express-handlebars'),
-    bodyParser = ('body-parser');
+    mongoose = require('mongoose'),
+    exphbs = require('express-handlebars'),
+    bodyParser = require('body-parser');
 
 var app = express();
 var PORT = process.env.PORT || 3000;

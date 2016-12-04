@@ -1,17 +1,20 @@
 var 
     express = require('express'),
     mongoose = require('mongoose'),
-    cheerio = ('cheerio'),
-    request = ('request');
+    cheerio = require('cheerio'),
+    request = require('request');
 
 var 
-    router = express.router(),
+    router = express.Router(),
     Article = require('./../models/Article.js'),
-    Comment = requre('./../models/Comment.js');
+    Comment = require('./../models/Comment.js');
 
 // Scrape articles to DB
 
 // Read - Articles
+router.get('/', function (req, res) {
+    res.send('<h1>testing</h1>');
+});
 
 // Read - Article comments
 
@@ -19,3 +22,5 @@ var
 
 // Delete - Article comment
 
+
+module.exports = router;

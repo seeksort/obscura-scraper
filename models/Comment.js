@@ -8,5 +8,5 @@ var commentSchema = new Schema({
     date: Date
 });
 
-var Comment = mongoose.model("Comment", CommentSchema);
+var Comment = mongoose.model("Comment", commentSchema);
 module.exports = Comment;
