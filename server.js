@@ -1,13 +1,15 @@
+// import npm modules
 var 
     express = require('express'),
-    mongoose = require('mongoose'),
     exphbs = require('express-handlebars'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    morgan = require('morgan');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-// make public files available
+// start logger and make public files available
+app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -21,17 +23,6 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-// Start MongoDB & test connection
-mongoose.connect('mongodb://localhost/obscura_db');
-var db = mongoose.connection;
-
-db.on("error", function(error) {
-  console.log("Mongoose Error: ", error);
-});
-
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
-});
 
 
 // Grab routing

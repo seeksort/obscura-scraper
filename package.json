@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/seeksort/obscura-scraper#readme",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.7.1",
+    "morgan": "^1.7.0",
     "request": "^2.79.0"
   }
 }
