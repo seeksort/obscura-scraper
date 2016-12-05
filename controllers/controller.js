@@ -24,13 +24,12 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-
 // Mongoose models
 var Article = require('./../models/Article.js');
 var Comment = require('./../models/Comment.js');
 
 
-// Scrape articles to DB
+// Create - Scrape articles to DB
 router.get('/scrape/:location', function (req, res) {
     var requestUrl = 'http://www.atlasobscura.com/things-to-do/' + req.params.location + '/places?sort=recent';
     request(requestUrl, function(error, response, html){
@@ -39,7 +38,6 @@ router.get('/scrape/:location', function (req, res) {
         }
         else {
             var $ = cheerio.load(html);
-            var resultsArr = [];
             var eachCounter = 0;
             $('.content-card-text').each(function(i, element){
                 var articleObj = new Article();
@@ -47,8 +45,8 @@ router.get('/scrape/:location', function (req, res) {
                 articleObj.location = $(element).children('.place-card-location').text();
                 articleObj.slug = $(element).children('.content-card-subtitle').text();
                 articleObj.url = $(element).parent('h3').attr('href');
-                Article.findOne({'title': articleObj.title}, 'title', function(dbErr, result){
-                    if (result === null) {
+                Article.findOne({'title': articleObj.title}, 'title', function(err, doc){
+                    if (doc === null) {
                         articleObj.save();
                         eachCounter++;
                         console.log('# articles scraped: ' + eachCounter)
@@ -56,13 +54,22 @@ router.get('/scrape/:location', function (req, res) {
                 });
             });
         }
-        res.send(html);
+        res.redirect('/');
     });
 });
 
 // Read - Articles
-router.get('/', function (req, res) {
-    res.send('<h1>testing</h1>');
+router.get('/find/:location', function (req, res) {
+    // create a regex with the location name that ignores case and will find all matches, then plug into Mongoose
+    var query = new RegExp('.*' + req.params.location, 'gi');
+    Article.find({'location': {$regex: query}}, 'title', function(err, docs) {
+        if (docs === null) {
+            res.redirect('/scrape/:' + req.params.location);
+        }
+        else {
+            res.json(docs);
+        }
+    });
 });
 
 // Read - Article comments
