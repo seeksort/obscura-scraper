@@ -71,7 +71,7 @@ router.get('/find/:location', function(req, res) {
     // create a regex with the location name that ignores case and will find all matches, then plug into Mongoose
     var query = new RegExp('.*' + req.params.location, 'gi');
     console.log(query);
-    Article.find({'location': {$regex: query}}, 'title', function(err, docs) {
+    Article.find({'location': {$regex: query}}, function(err, docs) {
         if (docs.length === 0) {
             res.redirect('/scrape/' + req.params.location);
         }
