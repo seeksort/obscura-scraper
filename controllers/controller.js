@@ -71,7 +71,7 @@ router.get('/find/:location', function(req, res) {
     // create a regex with the location name that ignores case and will find all matches, then plug into Mongoose
     var query = new RegExp('.*' + req.params.location, 'gi');
     console.log(query);
-    Article.find({'location': {$regex: query}}, 'title', function(err, docs) {
+    Article.find({'location': {$regex: query}}, function(err, docs) {
         if (docs.length === 0) {
             res.redirect('/scrape/' + req.params.location);
         }
@@ -86,15 +86,22 @@ router.get('/comments/:articleid', function(req, res) {
     Article.findOne({'_id': req.params.articleid})
     .populate('comment')
     .exec(function(err, doc){
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(doc.comments)
-            res.json(doc)
-        }
+        var responseArr = [];
+        doc.comments.forEach(function(commentId){
+            var newObj = {"_id" : ObjectId(commentId.toString())};
+            responseArr.push(newObj);
+        });
+        Comment.find({
+            "$or": responseArr
+        }, function(err, result){
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
     })
-    
 })
 
 // Create - Article comment
