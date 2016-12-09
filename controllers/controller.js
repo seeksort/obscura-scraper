@@ -86,15 +86,22 @@ router.get('/comments/:articleid', function(req, res) {
     Article.findOne({'_id': req.params.articleid})
     .populate('comment')
     .exec(function(err, doc){
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(doc.comments)
-            res.json(doc)
-        }
+        var responseArr = [];
+        doc.comments.forEach(function(commentId){
+            var newObj = {"_id" : ObjectId(commentId.toString())};
+            responseArr.push(newObj);
+        });
+        Comment.find({
+            "$or": responseArr
+        }, function(err, result){
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.json(result);
+            }
+        });
     })
-    
 })
 
 // Create - Article comment

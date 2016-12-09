@@ -38,60 +38,76 @@
         </div>
     </div>
     <!-- Place Articles -->
-    <div class="container">
+    <div class="container" id="main-body">
         <div class="row">
-            <div class="col s3">
+            <div class="col s3" id="cool-sites-text">
                 <h4>Cool sites in <span id="place-name" class="pink-text text-darken-4">Texas</span></h4>
             </div>
             <div class="col s9 collection">
-                <ul class="collapsible" data-collapsible="accordion">
-                    <li>
-                        <div class="collapsible-header">CARTHAGE, TEXAS - Last Remaining Boundary Marker for the Republic of Texas</div>
-                        <div class="collapsible-body">
-                            <p>The only international border marker within the United States. <a href="http://www.atlasobscura.com/places/last-remaining-boundary-marker-for-the-republic-of-texas">Read more...</a>
-                            <a class="waves-effect waves-light btn">Comments (<span>0</span>)</a>
-                            <a class="waves-effect waves-light btn">Leave a Comment</a>
-                            </p>
-                        </div>
+                <ul class="collapsible" data-collapsible="accordion"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- Modal - Get Comments -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Comments</h4>
+            <div class="row">
+                <ul class="collection">
+                    <!-- COMMENTS WITH DELETE REQUEST -->
+                    <li class="collection-item">
+                        <h5>Comment title</h5>
+                        <h6>by somelurker</h6>
+                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
+                        <a class="waves-effect waves-light btn">Delete Comment</a>
                     </li>
-                    <li>
-                        <div class="collapsible-header">Second</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
+                    <li class="collection-item">
+                        <h5>Comment title</h5>
+                        <h6>by somelurker</h6>
+                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
+                        <a class="waves-effect waves-light btn">Delete Comment</a>
                     </li>
-                    <li>
-                        <div class="collapsible-header">Third</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
+                    <li class="collection-item">
+                        <h5>Comment title</h5>
+                        <h6>by somelurker</h6>
+                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
+                        <a class="waves-effect waves-light btn">Delete Comment</a>
                     </li>
-                    <li>
-                        <div class="collapsible-header">Second</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">Third</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">Second</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">Third</div>
-                        <div class="collapsible-body">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
+                    <li class="collection-item">
+                        <h5>Comment title</h5>
+                        <h6>by somelurker</h6>
+                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
+                        <a class="waves-effect waves-light btn">Delete Comment</a>
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+    <!-- Modal - Leave Comment -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Leave a Comment</h4>
+            <div class="row">
+                <!-- FORM WITH POST -->
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="commenter_name" type="text" class="validate">
+                            <label for="commenter_name">Your Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Textarea</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
     </div>
     <!-- jQuery -->
