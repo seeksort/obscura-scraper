@@ -17,9 +17,9 @@ $(document).ready(function(){
                     '<li><div class="collapsible-header">' + 
                     article.location.toUpperCase() + ' - ' + article.title + '</div>' + 
                     '<div class="collapsible-body" article-data="' + 
-                    article._id + '"><p>' + 
+                    article._id + '"><div class="col s12"><img class="responsive-img" src="' + article.img + '"></div><p>' + 
                     article.slug +'<a href="' + article.url + '"> Read more...</a><br>' + 
-                    '<a class="waves-effect waves-light btn get-comments-btn" href="#modal1">Comments</a><a class="waves-effect waves-light btn leave-comment-btn" href="#modal2">Leave a Comment</a></p></div>'
+                    '<a class="waves-effect waves-light btn get-comments-btn" href="#modal1">Comments</a>&nbsp<a class="waves-effect waves-light btn leave-comment-btn" href="#modal2">Leave a Comment</a></p></div>'
                 )
             })
             $('#cool-sites-text').empty();
@@ -45,8 +45,7 @@ $(document.body).on('click', '.location-btn', function(){
                 '<li><div class="collapsible-header">' + 
                 article.location.toUpperCase() + ' - ' + article.title + '</div>' + 
                 '<div class="collapsible-body" article-data="' + 
-                article._id + '"><p>' + 
-                article.slug +'<a href="' + article.url + '"> Read more...</a><br>' + 
+                    article._id + '"><div class="col s12"><img class="responsive-img" src="' + article.img + '"></div><p>' +  
                 '<a class="waves-effect waves-light btn get-comments-btn" href="#modal1">Comments</a><a class="waves-effect waves-light btn leave-comment-btn" href="#modal2">Leave a Comment</a></p></div>'
             )
         })
@@ -67,12 +66,13 @@ $(document.body).on('click', '.get-comments-btn', function(){
     }).done(function(res){
         console.log(res);
         $('#modal1 > div > div > ul').empty();
-        res.forEach(function(comment){
-            $('#modal1 > div > div > ul').append(
-                '<li class="collection-item"><h5>' + comment.comment_title + '</h5><h6>by ' + comment.commenter_name +  '</h6><h6>' + comment.date + '</h6><p>' + comment.body + '</p><a class="waves-effect waves-light btn comment-delete-btn" id="' + comment._id + '">Delete Comment</a></li>'
-            );
-        })
-
+        if (res.length > 0) {
+            res.forEach(function(comment){
+                $('#modal1 > div > div > ul').append(
+                    '<li class="collection-item"><h5>' + comment.comment_title + '</h5><h6>by ' + comment.commenter_name +  '</h6><h6>' + comment.date + '</h6><p>' + comment.body + '</p><a class="waves-effect waves-light btn comment-delete-btn" id="' + comment._id + '">Delete Comment</a></li>'
+                );
+            })
+        }
     })
 });
 

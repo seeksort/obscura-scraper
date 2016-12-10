@@ -7,6 +7,7 @@ var articleSchema = new Schema({
     location:   String,
     slug:       String,
     url:        String,
+    img:        String,
     comments:   [{
         type: Schema.Types.ObjectId,
         ref: "Comment" 

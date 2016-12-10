@@ -49,11 +49,13 @@ router.get('/scrape/:location', function(req, res) {
             var $ = cheerio.load(html);
             var eachCounter = 0;
             $('.content-card-text').each(function(i, element){
+                console.log($(element).prev('figure').children().attr('data-src'))
                 var articleObj = new Article();
                 articleObj.title = $(element).children('.content-card-title').text();
                 articleObj.location = $(element).children('.place-card-location').text();
                 articleObj.slug = $(element).children('.content-card-subtitle').text();
-                articleObj.url = $(element).parent('h3').attr('href');
+                articleObj.url = 'http://www.atlasobscura.com' + $(element).parent('a').attr('href');
+                articleObj.img = $(element).prev('figure').children().attr('data-src');
                 Article.findOne({'title': articleObj.title}, 'title', function(err, doc){
                     if (doc === null) {
                         articleObj.save();
@@ -92,16 +94,21 @@ router.get('/comments/:articleid', function(req, res) {
             var newObj = {"_id" : ObjectId(commentId.toString())};
             responseArr.push(newObj);
         });
-        Comment.find({
-            "$or": responseArr
-        }, function(err, result){
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.json(result);
-            }
-        });
+        if (responseArr.length > 0) {
+            Comment.find({
+                "$or": responseArr
+            }, function(err, result){
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.json(result);
+                }
+            });
+        }
+        else {
+            res.end();
+        }
     })
 })
 
