@@ -3,7 +3,8 @@ var
     mongoose = require('mongoose'),
     cheerio = require('cheerio'),
     request = require('request'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    moment = require('moment');
 
 mongoose.Promise = Promise;
 
@@ -106,12 +107,14 @@ router.get('/comments/:articleid', function(req, res) {
 
 // Create - Article comment
 router.post('/comments/:articleid/submit', function(req, res) {
+    console.log(req.body);
     var newComment = new Comment({
-        comment_title: "I can't go for that",
-        body: "no can do",
-        date: "2016-12-6"
+        commenter_name: req.body.commenter_name,
+        comment_title: req.body.comment_title,
+        body: req.body.body,
+        date: moment().format('dddd, MMMM DD YYYY')
     });
-
+    console.log(newComment);
     newComment.save(function(err, commentDoc) {
         if (err) {
             console.log(err);
@@ -135,14 +138,22 @@ router.post('/comments/:articleid/submit', function(req, res) {
 
 // Delete - Article comment
 router.delete('/comments/delete/:commentid', function(req, res) {
-    var query = {'_id': ObjectId(req.params.commentid)}
+    var commentIdQuery = req.params.commentid;
+    var query = {'_id': ObjectId(commentIdQuery)}
     Comment.remove(query, function(err) {
         if (err) {
-            console.log('error occurred')
+            console.log(err);
+        }
+    })
+    var articleQuery = {'comments': { $elemMatch: {$eq: ObjectId(commentIdQuery)}}};
+    var commentRemove = {$pull: {'comments': ObjectId(commentIdQuery)}}
+    Article.findOneAndUpdate(articleQuery, commentRemove, function(err, doc) {
+        if (err) {
             console.log(err);
         }
         else {
-            res.send('Deleted');
+            console.log(doc)
+            res.send('Deleted from Article-comments collection');
         }
     })
 })

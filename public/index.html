@@ -56,28 +56,7 @@
                 <ul class="collection">
                     <!-- COMMENTS WITH DELETE REQUEST -->
                     <li class="collection-item">
-                        <h5>Comment title</h5>
-                        <h6>by somelurker</h6>
-                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
-                        <a class="waves-effect waves-light btn">Delete Comment</a>
-                    </li>
-                    <li class="collection-item">
-                        <h5>Comment title</h5>
-                        <h6>by somelurker</h6>
-                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
-                        <a class="waves-effect waves-light btn">Delete Comment</a>
-                    </li>
-                    <li class="collection-item">
-                        <h5>Comment title</h5>
-                        <h6>by somelurker</h6>
-                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
-                        <a class="waves-effect waves-light btn">Delete Comment</a>
-                    </li>
-                    <li class="collection-item">
-                        <h5>Comment title</h5>
-                        <h6>by somelurker</h6>
-                        <p>Comment is here, comments are happening, commentary is ongoing in this modal</p>
-                        <a class="waves-effect waves-light btn">Delete Comment</a>
+                        
                     </li>
                 </ul>
             </div>
@@ -99,15 +78,19 @@
                             <label for="commenter_name">Your Name</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Textarea</label>
+                            <input id="comment_title" type="text" class="validate">
+                            <label for="comment_title">Comment Title</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="body" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Write something...</label>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat leave-comment-btn">Submit</a>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
     </div>
     <!-- jQuery -->
