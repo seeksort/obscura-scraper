@@ -16,7 +16,15 @@ var
 var ObjectId = require('mongoose').Types.ObjectId;
 
 // Start Mongoose & test connection
-mongoose.connect('mongodb://localhost/obscura_db');
+var databaseUri = 'mongodb://localhost/obscura_db';
+
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} 
+else {
+    mongoose.connect(databaseUri);
+}
+
 var db = mongoose.connection;
 
 db.on("error", function(error) {
