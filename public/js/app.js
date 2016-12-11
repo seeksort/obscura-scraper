@@ -18,7 +18,6 @@ $(document).ready(function() {
 // Listener: populate articles when button clicked
 $(document.body).on('click', '.location-btn', function() {
     var place = $(this).text();
-    console.log(place)
     var query = place.split(' ').join('-').toLowerCase();
     $.ajax({
         url: '/find/' + query,
@@ -46,12 +45,10 @@ $(document.body).on('click', '.location-btn', function() {
 // Listener: populate comments
 $(document.body).on('click', '.get-comments-btn', function() {
     var articleId = $(this).parents('div').attr('article-data');
-    console.log('articleId ' + articleId)
     $.ajax({
         url: '/comments/' + articleId,
         method: 'GET'
     }).done(function(res) {
-        console.log(res);
         $('#modal1 > div > div > ul').empty();
         if (res.length > 0) {
             res.forEach(function(comment) {
@@ -72,13 +69,11 @@ $(document.body).on('click', '.leave-comment-btn', function() {
         body: $('#body').val(),
         date: ''
     }
-    console.log('commentObj: ' + $('#commenter_name').val())
     $.ajax({
         url: '/comments/' + currentArticle + '/submit',
         method: 'POST',
         data: commentObj
     }).done(function(res) {
-        console.log(res);
         $('#commenter_name').val('');
         $('#comment_title').val('');
         $('#body').val('');
@@ -94,14 +89,12 @@ $(document.body).on('click', '.comment-delete-btn', function() {
         method: 'DELETE'
     }).done(function(res) {
         $('#' + commentId).parent().remove();
-        console.log(res);
     })
 })
 
 // Global variable to detect which article is currently selected (for modal)
 $(document.body).on('click', '.collapsible-header', function() {
     currentArticle = $(this).parent('li').children('.collapsible-body').attr('article-data');
-    console.log(currentArticle);
 })
 
 // Modal listener
