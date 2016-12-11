@@ -9,7 +9,7 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa:700|Montserrat" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <!-- Styles -->
@@ -17,31 +17,34 @@
 </head>
 
 <body>
-    <!-- Intro -->
-    <div class="container">
-        <div class="row">
-            <div class="col s12 center-align" id="intro">
-                <h1>Obscura Scraper</h1>
+    <div class="parallax-container">
+        <div id="main">
+            <!-- Intro -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h1>Obscura Scraper</h1>
+                    <h4>Comment on a sample of regional highlights from <br><a href="http://http://www.atlasobscura.com/">Atlas Obscura</a></h4>
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- Places -->
-    <div class="container">
-        <div class="row">
-            <div class="col s12 center-align" id="intro">
-                <a class="waves-effect waves-light btn-large location-btn">Texas</a>
-                <a class="waves-effect waves-light btn-large location-btn">New Mexico</a>
-                <a class="waves-effect waves-light btn-large location-btn">Louisiana</a>
-                <a class="waves-effect waves-light btn-large location-btn">Arizona</a>
-                <a class="waves-effect waves-light btn-large location-btn">California</a>
+            <!-- Places -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a class="waves-effect waves-light btn-large location-btn">Texas</a>
+                    <a class="waves-effect waves-light btn-large location-btn">New Mexico</a>
+                    <a class="waves-effect waves-light btn-large location-btn">Louisiana</a>
+                    <a class="waves-effect waves-light btn-large location-btn">Arizona</a>
+                    <a class="waves-effect waves-light btn-large location-btn">California</a>
+                </div>
             </div>
+            
         </div>
+        <div class="parallax"><img src="topographic-austin-1955.png"></div>
     </div>
     <!-- Place Articles -->
     <div class="container" id="main-body">
         <div class="row">
             <div class="col m12 l3" id="cool-sites-text">
-                <h4>Cool sites in <span id="place-name" class="pink-text text-darken-4">Texas</span></h4>
+                <h4>Select a location</h4>
             </div>
             <div class="col m12 l9 collection">
                 <ul class="collapsible" data-collapsible="accordion"></ul>
@@ -56,7 +59,6 @@
                 <ul class="collection">
                     <!-- COMMENTS WITH DELETE REQUEST -->
                     <li class="collection-item">
-                        
                     </li>
                 </ul>
             </div>

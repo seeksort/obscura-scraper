@@ -1,0 +1,74 @@
+h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #E1EDEB;
+}
+
+#intro {
+    background-image: url("./../topographic-austin-1955.png");
+}
+
+.btn,
+.btn-large {
+    text-decoration: none;
+    color: #fff;
+    background-color: #880e4f;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn-large:hover,
+.btn-floating:hover {
+    background-color: #9E567C;
+}
+
+a:not(.btn):not(.btn-large) {
+    color: #267E93;
+}
+
+a:hover:not(.btn):not(.btn-large) {
+    color: #33A7C4;
+}
+
+a:visited:not(.btn):not(.btn-large) {
+    color: #400D87;
+}
+
+.collapsible-header,
+.collapsible-body {
+    background-color: #EDF9F4;
+}
+
+.collapsible-header,
+.collapsible-body {
+    background-color: #F9FFFC;
+}
+
+#main {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+    height: 30%;
+    max-height: 500px;
+}
+
+@media only screen and (max-width: 601px) {
+    .btn-large {
+        height: 36px;
+        font-size: 12px;
+        padding: 8px;
+        margin: 2px;
+        line-height: 16px;
+    }
+}

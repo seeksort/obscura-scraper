@@ -1,7 +1,6 @@
 // import npm modules
 var 
     express = require('express'),
-    exphbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     morgan = require('morgan');
 
@@ -15,15 +14,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-// Handlebars
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
-
-
-
 
 // Grab routing
 var routes = require('./controllers/controller.js');
