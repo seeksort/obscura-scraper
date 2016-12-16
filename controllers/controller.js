@@ -50,15 +50,17 @@ router.get('/scrape', function(req, res) {
     var locations = ['texas', 'new-mexico', 'louisiana', 'arizona', 'california'];
     locations.forEach(function(locationName) {
         Article.find({ 'location': locationName }, function(err, docs) {
-            if (docs.length === 0) {
-                var requestUrl = 'http://www.atlasobscura.com/things-to-do/' + locationName + '/places?sort=recent';
-                request(requestUrl, function(error, response, html) {
-                    if (error) {
-                        console.log('Controller.js - scrape error occurred: ' + error);
-                    } else {
-                        var $ = cheerio.load(html);
-                        var eachCounter = 0;
-                        $('.content-card-text').each(function(i, element) {
+            var requestUrl = 'http://www.atlasobscura.com/things-to-do/' + locationName + '/places?sort=recent';
+            request(requestUrl, function(error, response, html) {
+                if (error) {
+                    console.log('Controller.js - scrape error occurred: ' + error);
+                }
+                else {
+                    var $ = cheerio.load(html);
+                    var eachCounter = 0;
+                    $('.content-card-text').each(function(i, element) {
+                        // if scraped element not in docs array, save it to the database.
+                        if (docs.indexof(element) < 0) {
                             var articleObj = new Article();
                             articleObj.title = $(element).children('.content-card-title').text();
                             articleObj.location = $(element).children('.place-card-location').text();
@@ -69,13 +71,13 @@ router.get('/scrape', function(req, res) {
                                 if (doc === null) {
                                     articleObj.save();
                                 }
-                            });
-                        });
-                    }
-                });
-            }
+                            })
+                        }
+                    });
+                }
+            });            
         })
-    })
+    });
     res.redirect('/');
 });
 
@@ -129,7 +131,8 @@ router.post('/comments/:articleid/submit', function(req, res) {
     newComment.save(function(err, commentDoc) {
         if (err) {
             console.log(err);
-        } else {
+        } 
+        else {
             var query = { '_id': ObjectId(req.params.articleid) };
             var update = {
                 $push: { 'comments': commentDoc._id }
@@ -137,7 +140,8 @@ router.post('/comments/:articleid/submit', function(req, res) {
             Article.findOneAndUpdate(query, update, { new: true }, function(error, doc) {
                 if (error) {
                     console.log(error);
-                } else {
+                } 
+                else {
                     res.send(doc);
                 }
             })
@@ -159,7 +163,8 @@ router.delete('/comments/delete/:commentid', function(req, res) {
     Article.findOneAndUpdate(articleQuery, commentRemove, function(err, doc) {
         if (err) {
             console.log(err);
-        } else {
+        }
+        else {
             console.log(doc)
             res.send('Deleted from Article-comments collection');
         }
